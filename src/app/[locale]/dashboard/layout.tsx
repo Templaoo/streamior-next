@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { Skeleton } from '@/components/ui/advanced-skeleton';
 import { 
@@ -31,6 +31,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, loading, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -86,25 +87,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       title: 'Home',
       href: '/dashboard',
       icon: Home,
-      active: true,
+      active: pathname === '/dashboard' || pathname.endsWith('/dashboard'),
     },
     {
       title: 'Library',
       href: '/dashboard/library',
       icon: FolderOpen,
-      active: false,
+      active: pathname.includes('/dashboard/library'),
     },
     {
       title: 'Destinations',
       href: '/dashboard/destinations',
       icon: Share2,
-      active: false,
+      active: pathname.includes('/dashboard/destinations'),
     },
     {
       title: 'Members',
       href: '/dashboard/members',
       icon: Users,
-      active: false,
+      active: pathname.includes('/dashboard/members'),
     },
   ];
 
@@ -113,7 +114,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       title: 'Settings',
       href: '/dashboard/settings',
       icon: Settings,
-      active: false,
+      active: pathname.includes('/dashboard/settings'),
     },
   ];
 
