@@ -1,0 +1,102 @@
+{
+  "common": {
+    "welcome": "Bienvenue",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "services": "Services",
+    "blog": "Blog",
+    "dashboard": "Tableau de bord"
+  },
+  "homepage": {
+    "title": "Bienvenue sur Streamior Next Pro",
+    "subtitle": "Une application Next.js professionnelle avec internationalisation",
+    "description": "Construite avec Next.js 15, TypeScript, Tailwind CSS et next-intl pour une expérience web moderne et évolutive.",
+    "features": {
+      "title": "Fonctionnalités",
+      "performance": {
+        "title": "Haute Performance",
+        "description": "Construit avec Turbopack pour un développement et des builds ultra-rapides"
+      },
+      "multilingual": {
+        "title": "Support Multilingue",
+        "description": "Internationalisation complète avec support français et anglais"
+      },
+      "modern": {
+        "title": "Stack Moderne",
+        "description": "Dernière version Next.js 15, React 19 et TypeScript pour un développement de pointe"
+      }
+    },
+    "cta": {
+      "title": "Commencer",
+      "description": "Commencez à construire votre prochaine grande application dès aujourd'hui",
+      "button": "En savoir plus"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Streamior Next Pro. Tous droits réservés.",
+    "language": "Langue"
+  },
+  "metadata": {
+    "title": "Streamior Next Pro - Application Next.js Professionnelle",
+    "description": "Une application Next.js 15 professionnelle avec TypeScript, Tailwind CSS et support d'internationalisation"
+  },
+  "theme": {
+    "toggle": "Changer le thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "auth": {
+    "login": {
+      "title": "Se connecter à Streamior",
+      "subtitle": "Bon retour ! Connectez-vous à votre compte",
+      "signInWithGoogle": "Se connecter avec Google",
+      "signingIn": "Connexion en cours...",
+      "error": "Échec de l'authentification",
+      "loading": "Chargement..."
+    },
+    "signOut": "Se déconnecter",
+    "profile": {
+      "title": "Profil",
+      "settings": "Paramètres"
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bon retour",
+    "overview": "Aperçu",
+    "analytics": "Analytiques",
+    "users": "Utilisateurs",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "sidebar": {
+      "navigation": "Navigation",
+      "main": "Principal",
+      "account": "Compte"
+    },
+    "stats": {
+      "totalUsers": "Total utilisateurs",
+      "activeUsers": "Utilisateurs actifs",
+      "revenue": "Revenus",
+      "growth": "Croissance"
+    }
+  }
+}
