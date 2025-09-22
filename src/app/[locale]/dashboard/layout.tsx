@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useAuth } from '@/hooks/useAuth';
 import { Skeleton } from '@/components/ui/advanced-skeleton';
 import { 
@@ -19,11 +18,11 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { 
   Home, 
-  BarChart3, 
   Users, 
   Settings, 
-  User, 
-  LogOut
+  LogOut,
+  FolderOpen,
+  Share2
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -31,8 +30,6 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const t = useTranslations('dashboard');
-  const tAuth = useTranslations('auth');
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -86,20 +83,26 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navigation = [
     {
-      title: t('overview'),
+      title: 'Home',
       href: '/dashboard',
       icon: Home,
       active: true,
     },
     {
-      title: t('analytics'),
-      href: '/dashboard/analytics',
-      icon: BarChart3,
+      title: 'Library',
+      href: '/dashboard/library',
+      icon: FolderOpen,
       active: false,
     },
     {
-      title: t('users'),
-      href: '/dashboard/users',
+      title: 'Destinations',
+      href: '/dashboard/destinations',
+      icon: Share2,
+      active: false,
+    },
+    {
+      title: 'Members',
+      href: '/dashboard/members',
       icon: Users,
       active: false,
     },
@@ -107,13 +110,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const accountNavigation = [
     {
-      title: t('profile'),
-      href: '/dashboard/profile',
-      icon: User,
-      active: false,
-    },
-    {
-      title: t('settings'),
+      title: 'Settings',
       href: '/dashboard/settings',
       icon: Settings,
       active: false,
@@ -144,7 +141,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </SidebarHeader>
           
           <SidebarContent>
-            <SidebarNavGroup title={t('sidebar.main')}>
+            <SidebarNavGroup title="">
               <SidebarNav>
                 {navigation.map((item) => (
                   <SidebarNavItem
@@ -162,7 +159,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </SidebarNav>
             </SidebarNavGroup>
 
-            <SidebarNavGroup title={t('sidebar.account')}>
+            <SidebarNavGroup title="">
               <SidebarNav>
                 {accountNavigation.map((item) => (
                   <SidebarNavItem
@@ -182,27 +179,44 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </SidebarContent>
 
           <SidebarFooter>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 rounded-lg p-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.photoURL || ''} />
-                  <AvatarFallback>
-                    {user.displayName?.charAt(0) || user.email?.charAt(0) || 'U'}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 text-sm">
-                  <div className="font-medium">{user.displayName || 'User'}</div>
-                  <div className="text-muted-foreground truncate">{user.email}</div>
+            <div className="space-y-4">
+              {/* Storage Info */}
+              <div className="px-3 py-2 text-xs text-muted-foreground">
+                <div className="flex items-center justify-between mb-2">
+                  <span>Storage</span>
+                  <span>0 of 5 hours</span>
                 </div>
+                <div className="w-full bg-muted rounded-full h-1.5">
+                  <div className="bg-blue-600 h-1.5 rounded-full w-0" />
+                </div>
+                <Button variant="link" size="sm" className="h-auto p-0 text-xs mt-1">
+                  Add more
+                </Button>
               </div>
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-2"
-                onClick={handleSignOut}
-              >
-                <LogOut className="h-4 w-4" />
-                {tAuth('signOut')}
-              </Button>
+              
+              {/* User Profile */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 rounded-lg p-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.photoURL || ''} />
+                    <AvatarFallback>
+                      {user.displayName?.charAt(0) || user.email?.charAt(0) || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1 text-sm">
+                    <div className="font-medium">{user.displayName || 'User'}</div>
+                    <div className="text-muted-foreground truncate">{user.email}</div>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-2"
+                  onClick={handleSignOut}
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </Button>
+              </div>
             </div>
           </SidebarFooter>
         </Sidebar>
